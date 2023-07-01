@@ -1,5 +1,9 @@
 {
     "compilerOptions": {
+        "baseUrl": "src",
+        "paths": {
+            "@client/*": ["./client/*"]
+        },
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "noImplicitAny": true,

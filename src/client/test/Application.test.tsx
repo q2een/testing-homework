@@ -1,13 +1,13 @@
 import {render, screen} from "@testing-library/react";
 import React from "react";
-import {Application} from "../Application";
 import {Provider} from "react-redux";
-import {initStore} from "../store";
-import {CartApi, ExampleApi} from "../api";
 import {BrowserRouter, MemoryRouter} from "react-router-dom";
-import { getStubCart } from "../stubs/cartItems.stub";
+import {CartApi, ExampleApi} from "@client/api";
+import {initStore} from "@client/store";
+import {Application} from "@client/Application";
+import {getStubCart} from "@client/stubs/cartItems.stub";
 
-jest.mock("../api")
+jest.mock("@client/api")
 const mockCartApi = jest.mocked(new CartApi());
 
 const getStore = () => initStore(new ExampleApi(""), mockCartApi);
