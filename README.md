@@ -1,3 +1,37 @@
+## Как запустить
+
+```sh
+# использование версии ноды 
+nvm use
+
+# установите зависимости
+npm ci
+
+# соберите клиентский код приложения
+npm run build
+
+# установить playwright
+npx playwright install
+```
+
+Для интеграционных тестов используется [playwright](https://playwright.dev/)
+Используются [page objects](https://www.selenium.dev/documentation/test_practices/encouraged/page_object_models/)
+
+Для запуска тестов
+```shell
+npm run test
+```
+
+Для запуска интеграционных тестов не нужно делать `npm run start` - он подымется сам
+
+Пример как задать `BUG_ID` для интеграционных тестов в package.json: 
+```
+    "start": "BUG_ID=1 nodemon ./src/server/index.ts",
+    "test:unit": "BUG_ID=1 jest",
+```
+
+Телеграм для связи - [@q2een_dev](https://t.me/q2een_dev)
+
 # Домашнее задание: Автотесты
 
 Вам дано приложение — интернет магазин. С его помощью можно смотреть каталог товаров, добавлять товары в корзину и оформлять заказы.
