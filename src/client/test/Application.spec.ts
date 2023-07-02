@@ -32,11 +32,11 @@ test.describe("hamburger", () => {
 
 
 test.describe("Статические страницы", () => {
-    ApplicationPageObjectModel.StaticApplicationPages.forEach(({type, title}) => {
+    ApplicationPageObjectModel.StaticAppPages.forEach(({title, objectModel}) => {
         test(`[Responsive] страница "${title}" адаптивная и со статическим контентом`, async ({page}) => {
-            const pom = new ApplicationPageObjectModel(page);
+            const pom = new objectModel(page);
 
-            await pom.gotoPage(type);
+            await pom.goto();
             await expect(page).toHaveScreenshot({fullPage: true});
         })
     })

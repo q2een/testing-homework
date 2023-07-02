@@ -1,12 +1,12 @@
-import {BaseApplicationPageObjectModel} from "@client/test-helpers/page-object-models/BaseApplication.pom";
+import {BaseStaticUrlPageObjectModel} from "@client/test-helpers/page-object-models/BaseApplication.pom";
 import {Locator, Page} from "@playwright/test";
 import {ProductShortInfo} from "common/types";
 
-export class CatalogPageObjectModel extends BaseApplicationPageObjectModel<"catalog"> {
+export class CatalogPageObjectModel extends BaseStaticUrlPageObjectModel {
     public readonly productItemsLocator: Locator;
 
     constructor(page: Page) {
-        super(page, "catalog");
+        super(page, "./catalog");
         this.productItemsLocator = page.locator(".Catalog div[data-testid]");
     }
 

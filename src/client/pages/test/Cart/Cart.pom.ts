@@ -1,7 +1,7 @@
-import {BaseApplicationPageObjectModel} from "@client/test-helpers/page-object-models/BaseApplication.pom";
+import {BaseStaticUrlPageObjectModel} from "@client/test-helpers/page-object-models/BaseApplication.pom";
 import {Locator, Page} from "@playwright/test";
 
-export class CartPageObjectModel extends BaseApplicationPageObjectModel<"cart"> {
+export class CartPageObjectModel extends BaseStaticUrlPageObjectModel {
     public static readonly apiCheckoutUrl = "./api/checkout"
 
     public readonly pageLocator: Locator;
@@ -10,7 +10,7 @@ export class CartPageObjectModel extends BaseApplicationPageObjectModel<"cart"> 
     public readonly checkoutSuccessLocator: Locator;
 
     constructor(page: Page) {
-        super(page, "cart");
+        super(page, "./cart");
         this.pageLocator = page.locator(".Cart");
         this.orderLocator = this.pageLocator.getByRole("table");
         this.formLocator = this.pageLocator.locator(".Form");
@@ -47,6 +47,6 @@ export class CartPageObjectModel extends BaseApplicationPageObjectModel<"cart"> 
     }
 
     public matchApiRequest(url: string): boolean {
-        return url.endsWith(CartPageObjectModel.apiCheckoutUrl)
+        return url.endsWith(CartPageObjectModel.apiCheckoutUrl.slice(1))
     }
 }

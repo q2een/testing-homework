@@ -1,13 +1,14 @@
 import {Locator, Page, ViewportSize} from "@playwright/test";
-import {
-    ApplicationPageType,
-    BaseApplicationPageObjectModel
-} from "@client/test-helpers/page-object-models/BaseApplication.pom";
+import {HomePageObjectModel} from "@client/pages/test/Home/Home.pom";
+import {ContactsPageObjectModel} from "@client/pages/test/Contants/Contacts.pom";
+import {DeliveryPageObjectModel} from "@client/pages/test/Delivery/Delivery.pom";
 
-export class ApplicationPageObjectModel extends BaseApplicationPageObjectModel<"home"> {
-    public static readonly StaticApplicationPages = BaseApplicationPageObjectModel
-        .ApplicationPages
-        .filter(x => x.type === "home" || x.type === "delivery" || x.type === "contacts");
+export class ApplicationPageObjectModel extends HomePageObjectModel {
+    public static StaticAppPages = [
+        {title: "Главная", objectModel: HomePageObjectModel},
+        {title: "Условия доставки", objectModel: DeliveryPageObjectModel},
+        {title: "Контакты", objectModel: ContactsPageObjectModel}
+    ]
 
     public static readonly HamburgerVisibleViewport: ViewportSize = {
         height: 400, width: 575
@@ -20,13 +21,9 @@ export class ApplicationPageObjectModel extends BaseApplicationPageObjectModel<"
     public readonly hamburgerMenuLocator: Locator;
 
     constructor(page: Page) {
-        super(page, "home");
+        super(page);
         this.hamburgerLocator = page.getByRole("button", {name: "Toggle navigation"});
         this.hamburgerMenuLocator = page.locator("nav.navbar .navbar-nav");
-    }
-
-    public async gotoPage(pageType: ApplicationPageType) {
-        await this.gotoAppPage(pageType)
     }
 
     public async setHamburgerHiddenViewport() {
