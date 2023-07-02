@@ -12,6 +12,9 @@ npm run build
 
 # установить playwright
 npx playwright install
+
+# обновить скриншоты
+npm run test:e2e:update
 ```
 
 Для интеграционных тестов используется [playwright](https://playwright.dev/)
