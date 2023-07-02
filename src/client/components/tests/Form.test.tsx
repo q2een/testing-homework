@@ -1,8 +1,9 @@
 import userEvent from "@testing-library/user-event";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
-import {CheckoutFormData} from "../../../common/types";
-import {Form, FormProps} from "../Form";
+import {CheckoutFormData} from "common/types";
 import React from "react";
+import {Form, FormProps} from "@client/components/Form";
+import {getStubCheckoutForm} from "@client/stubs/checkoutForm.stub";
 
 const fillForm = (values: Partial<CheckoutFormData>) => {
     if (values.name !== undefined) {
@@ -53,7 +54,7 @@ it("если отправлена пустая форма, должны быть
 it("если телефон неправильного формата, должна быть ошибка валидации", async () => {
     render(<Form onSubmit={mockOnSubmit}/>)
 
-    await fillForm({name: "Fake Name", address: "Fake Address", phone: "123avf12389"});
+    await fillForm(getStubCheckoutForm({phone: "123ase323"}));
     await submitForm();
 
     await waitFor(() => {
@@ -69,7 +70,7 @@ it("если телефон неправильного формата, долж�
 
 it("если все введенные данные корректны, форма отправляется", async () => {
     render(<Form onSubmit={mockOnSubmit}/>)
-    const formValues: CheckoutFormData = {name: "Fake Name", address: "Fake Address", phone: "(123)4562909"}
+    const formValues = getStubCheckoutForm()
 
     await fillForm(formValues);
     await submitForm();

@@ -30,9 +30,10 @@ test.describe("hamburger", () => {
     })
 })
 
+
 test.describe("Статические страницы", () => {
     ApplicationPageObjectModel.StaticApplicationPages.forEach(({type, title}) => {
-        test(`страница "${title}" адаптивная и со статическим контентом`, async ({page}) => {
+        test(`[Responsive] страница "${title}" адаптивная и со статическим контентом`, async ({page}) => {
             const pom = new ApplicationPageObjectModel(page);
 
             await pom.gotoPage(type);

@@ -19,9 +19,20 @@ export class CatalogPageObjectModel extends BaseApplicationPageObjectModel<"cata
         return parseInt(value, 10);
     }
 
+    public getProductItemElementLocator(productItem: Locator, type: "price" | "title" | "link") {
+        switch (type) {
+            case "title":
+                return productItem.getByRole("heading", {level: 5});
+            case "link":
+                return productItem.getByRole("link");
+            case "price":
+                return productItem.locator(".ProductItem-Price")
+        }
+    }
+
     public async openProduct(productId: number) {
         const locator = this.productItemsLocator.getByTestId(productId.toString());
-        await locator.getByRole("link").click();
+        await this.getProductItemElementLocator(locator, "link").click();
     }
 
     public async mockApiResponse(data: ProductShortInfo[]) {

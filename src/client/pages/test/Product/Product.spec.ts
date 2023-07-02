@@ -2,7 +2,7 @@ import {expect, test} from "@playwright/test"
 import {ProductPageObjectModel} from "@client/pages/test/Product/Product.pom";
 import {CatalogPageObjectModel} from "@client/pages/test/Catalog/Catalog.pom";
 
-test("на странице продукта должна отображаться вся информация о продукте, кнопка добавления в корзину, лейбл о добавленном товаре", async ({page}) => {
+test("[Responsive] на странице продукта должна отображаться вся информация о продукте, кнопка добавления в корзину, лейбл о добавленном товаре", async ({page}) => {
     const productPom = new ProductPageObjectModel(page);
 
     const productId = 13;

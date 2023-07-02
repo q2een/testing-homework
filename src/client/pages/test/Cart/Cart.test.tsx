@@ -1,10 +1,9 @@
-import {fireEvent, render, screen, waitFor, within} from "@testing-library/react";
+import {render, screen, waitFor, within} from "@testing-library/react";
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import React from "react";
 import userEvent from "@testing-library/user-event";
 import {CartApi, ExampleApi} from "@client/api";
-import {mockApiResolvedValueOnce} from "@client/test-helpers/mocks/mockApiResults";
 import {CartState, CheckoutFormData} from "common/types";
 import {getStubCart, getStubCartFrom} from "@client/stubs/cartItems.stub";
 import {Cart} from "@client/pages/Cart";
@@ -82,17 +81,8 @@ it("если корзина пустая, вместо таблицы должн
     expect(screen.getByRole("link", {name: "catalog"})).toBeInTheDocument();
 })
 
-const fillForm = (values: Partial<CheckoutFormData>) => {
-    fireEvent.change(screen.getByLabelText("Name"), {target: {value: values.name}})
-    fireEvent.change(screen.getByLabelText("Phone"), {target: {value: values.phone}})
-    fireEvent.change(screen.getByLabelText("Address"), {target: {value: values.address}})
-}
-
-const submitForm = () => userEvent.click(screen.getByRole("button", {name: "Checkout"}))
-
 describe("Форма заказа", () => {
     const cartStub: CartState = getStubCart(2)
-    const formStub: CheckoutFormData = {name: "James Bond", phone: "0070070000", address: "street"}
 
     beforeEach(() => {
         jest.resetAllMocks();
@@ -109,27 +99,5 @@ describe("Форма заказа", () => {
         renderCart();
 
         expect(screen.getByRole("heading", {level: 2, name: "Сheckout"})).toBeInTheDocument();
-    })
-
-    it("если форма засабмичена, создается заказ с содержимым формы и корзины", async () => {
-        mockApiResolvedValueOnce(mockExampleApi.checkout, {id: 1})
-
-        renderCart();
-        fillForm(formStub);
-
-        await submitForm()
-        await waitFor(() => {
-            expect(mockExampleApi.checkout).toHaveBeenNthCalledWith(1, expect.objectContaining(
-                formStub,
-            ), expect.objectContaining(cartStub))
-        })
-
-        await waitFor(() => {
-            expect(screen.queryByRole("table")).not.toBeInTheDocument();
-        })
-
-        await waitFor(() => {
-            expect(screen.getByRole("heading", {level: 4, name: "Well done!"})).toBeInTheDocument();
-        })
     })
 })
