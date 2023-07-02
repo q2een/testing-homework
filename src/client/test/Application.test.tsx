@@ -5,7 +5,7 @@ import {BrowserRouter, MemoryRouter} from "react-router-dom";
 import {CartApi, ExampleApi} from "@client/api";
 import {initStore} from "@client/store";
 import {Application} from "@client/Application";
-import {getStubCart} from "@client/stubs/cartItems.stub";
+import {getStubCart} from "@client/test-helpers/stubs/cartItems.stub";
 
 jest.mock("@client/api")
 const mockCartApi = jest.mocked(new CartApi());

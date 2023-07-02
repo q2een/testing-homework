@@ -5,7 +5,7 @@ import React from "react";
 import {CartApi, ExampleApi} from "@client/api";
 import {initStore} from "@client/store";
 import {Product} from "@client/pages/Product";
-import {getStubCart} from "@client/stubs/cartItems.stub";
+import {getStubCart} from "@client/test-helpers/stubs/cartItems.stub";
 
 jest.mock("@client/api")
 const mockCartApi = jest.mocked(new CartApi());

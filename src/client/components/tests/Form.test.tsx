@@ -3,7 +3,7 @@ import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {CheckoutFormData} from "common/types";
 import React from "react";
 import {Form, FormProps} from "@client/components/Form";
-import {getStubCheckoutForm} from "@client/stubs/checkoutForm.stub";
+import {getStubCheckoutForm} from "@client/test-helpers/stubs/checkoutForm.stub";
 
 const fillForm = (values: Partial<CheckoutFormData>) => {
     if (values.name !== undefined) {

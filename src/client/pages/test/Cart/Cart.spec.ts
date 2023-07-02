@@ -1,10 +1,10 @@
 import {expect, test} from "@playwright/test";
 import {ProductPageObjectModel} from "@client/pages/test/Product/Product.pom";
 import {CartPageObjectModel} from "@client/pages/test/Cart/Cart.pom";
-import {getStubProductSingle} from "@client/stubs/products.stub";
+import {getStubProductSingle} from "@client/test-helpers/stubs/products.stub";
 import {CheckoutResponse} from "common/types";
-import {getStubCart} from "@client/stubs/cartItems.stub";
-import {getStubCheckoutForm} from "@client/stubs/checkoutForm.stub";
+import {getStubCart} from "@client/test-helpers/stubs/cartItems.stub";
+import {getStubCheckoutForm} from "@client/test-helpers/stubs/checkoutForm.stub";
 
 test("если добавить продукт и обновить страницу, элемент останется в корзине", async ({page}) => {
     const productPom = new ProductPageObjectModel(page);

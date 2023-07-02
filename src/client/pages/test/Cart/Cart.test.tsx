@@ -4,10 +4,10 @@ import {Provider} from "react-redux";
 import React from "react";
 import userEvent from "@testing-library/user-event";
 import {CartApi, ExampleApi} from "@client/api";
-import {CartState, CheckoutFormData} from "common/types";
-import {getStubCart, getStubCartFrom} from "@client/stubs/cartItems.stub";
+import {CartState} from "common/types";
 import {Cart} from "@client/pages/Cart";
 import {initStore} from "@client/store";
+import {getStubCart, getStubCartFrom} from "@client/test-helpers/stubs/cartItems.stub";
 
 jest.mock("@client/api")
 const mockCartApi = jest.mocked(new CartApi());

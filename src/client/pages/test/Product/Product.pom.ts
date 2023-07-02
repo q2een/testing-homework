@@ -1,5 +1,5 @@
 import {Locator, Page} from "@playwright/test";
-import {getStubProductSingle} from "@client/stubs/products.stub";
+import {getStubProductSingle} from "@client/test-helpers/stubs/products.stub";
 import {Product} from "common/types";
 import {BasePageObjectModel} from "@client/test-helpers/page-object-models/Base.pom";
 

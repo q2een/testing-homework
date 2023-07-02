@@ -1,5 +1,5 @@
-import {CartState, ProductShortInfo} from "../../common/types";
-import {getStubShortProducts} from "./products.stub";
+import {CartState, ProductShortInfo} from "common/types";
+import {getStubShortProducts} from "@client/test-helpers/stubs/products.stub";
 
 export const getStubCartStateFromProduct = (products: ProductShortInfo[]): CartState => {
     return getStubCartFrom(products)
